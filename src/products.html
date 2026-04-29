@@ -5,7 +5,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Products eCommerce Bootstrap HTML Template - Furnish</title>
-  <script type="module" src="./assets/js/main.js"></script>
 </head>
 
 <body class="font-sans text-gray-800">
@@ -16,7 +15,8 @@
         <span class="d-flex flex-column text-uppercase text-xs fw-bold lh-sm">
           <span class="" style="letter-spacing: .12rem;">Furnish</span>
           <span>Template</span>
-        </span></a>
+        </span>
+      </a>
 
       <div class="mx-auto  d-lg-block d-none">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -60,6 +60,7 @@
       </div>
     </div>
   </nav>
+
   <main>
     <section class="py-lg-8 py-5 text-center">
       <div class="container">
@@ -78,19 +79,24 @@
     <section class="py-lg-8 py-5">
       <div class="container ">
         <div class="row">
+          
           <!-- Sidebar Filters -->
           <aside class="col-lg-3 mb-4">
             <h3 class="fw-semibold mb-3 h5 ">Filters</h3>
             <div class="mb-4 bg-light border bg-opacity-50 p-4">
               <h6 class="fw-semibold mb-3 text-xs text-uppercase">Category</h6>
-              <ul class="list-unstyled lh-lg small mb-0">
-                <li><a href="#" class="text-dark">Living Room</a></li>
-                <li><a href="#" class="text-dark">Bedroom</a></li>
-                <li><a href="#" class="text-dark">Office</a></li>
-                <li><a href="#" class="text-dark">Decor</a></li>
-              </ul>
+                <ul class="list-unstyled lh-lg small mb-0" id="category-list">
+                  <!-- สังเกตว่าเราใช้ data-category เพื่อเก็บชื่อหมวดหมู่แทนการอ่านจาก Text -->
+                  <li><a href="#" class="text-dark filter-link active" data-category="All">All</a></li>
+                  <li><a href="#" class="text-dark filter-link" data-category="Living Room">Living Room</a></li>
+                  <li><a href="#" class="text-dark filter-link" data-category="Bedroom">Bedroom</a></li>
+                  <li><a href="#" class="text-dark filter-link" data-category="Office">Office</a></li>
+                  <li><a href="#" class="text-dark filter-link" data-category="Outdoor">Outdoor</a></li>
+                  <li><a href="#" class="text-dark filter-link" data-category="Decor">Decor</a></li>
+                </ul>
             </div>
-            <div class="mb-4 bg-light border bg-opacity-50 p-4">
+
+            <!-- <div class="mb-4 bg-light border bg-opacity-50 p-4">
               <h6 class="fw-semibold mb-3 text-xs text-uppercase">Price</h6>
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="price1">
@@ -119,21 +125,38 @@
                 <input class="form-check-input" type="checkbox" id="col3">
                 <label class="form-check-label" for="col3">Wood</label>
               </div>
-            </div>
-            <div class="d-grid">
-              <button class="btn btn-primary">Apply Filters</button>
+            </div> -->
+
+            <div class="d-grid mt-3">
+              <button id="apply-filter-btn" class="btn btn-primary">Apply Filters</button>
             </div>
           </aside>
 
-          <!-- Product Grid -->
           <div class="col-lg-9">
-            <div id="product-container" class="row g-4">
+            <div class="row g-4">
+              <!-- Search Bar -->
+              <div class="col-12 mb-4">
+                <div class="input-group">
+                  <span class="input-group-text bg-white border-end-0">
+                    <i class="bi bi-search"></i>
+                  </span>
+                  <input type="text" id="product-search" class="form-control border-start-0 ps-0" placeholder="Search furniture name...">
+                </div>
+              </div>
+
+              <!-- Product Container (ที่เราสร้างไว้ก่อนหน้านี้) -->
+              <div id="product-container" class="row g-4">
+                <!-- สินค้าจะแสดงที่นี่ -->
+              </div>
             </div>
           </div>
+
+          
         </div>
       </div>
     </section>
   </main>
+
   <footer class="bg-dark  pt-8 footer">
     <div class="container">
       <div class="row">
@@ -198,11 +221,9 @@
         </div>
       </div>
   </footer>
-  <div class="position-fixed end-0 bottom-0 m-4 z-1">
-    <a href="https://themewagon.com/themes/furnish/" class="btn btn-primary" target="_blank"> Download Now</a>
-  </div>
+  
 
-  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
     <div class="offcanvas-header px-4">
       <a class="navbar-brand" href="#">
         <span class="d-flex flex-column text-uppercase text-xs fw-bold lh-sm">
