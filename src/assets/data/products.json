@@ -1,5 +1,6 @@
 [
     {
+        "id": "prod_001",
         "name": "Mid-Century Modern Sofa",
         "price": 899.99,
         "category": "Living Room",
@@ -7,6 +8,7 @@
         "description": "A stylish and comfortable 3-seater sofa with walnut legs and premium fabric upholstery."
     },
     {
+        "id": "prod_002",
         "name": "Oak Wood Dining Table",
         "price": 1200.0,
         "category": "Dining Room",
@@ -14,6 +16,7 @@
         "description": "Solid white oak dining table that seats six comfortably. Hand-finished with natural oil."
     },
     {
+        "id": "prod_003",
         "name": "Velvet Armchair",
         "price": 349.5,
         "category": "Living Room",
@@ -21,6 +24,7 @@
         "description": "Deep emerald green velvet armchair with gold-finished steel legs."
     },
     {
+        "id": "prod_004",
         "name": "Minimalist Platform Bed",
         "price": 750.0,
         "category": "Bedroom",
@@ -28,6 +32,7 @@
         "description": "King-size platform bed frame made from sustainable pine wood. No box spring required."
     },
     {
+        "id": "prod_005",
         "name": "Industrial Bookshelf",
         "price": 280.0,
         "category": "Office",
@@ -35,6 +40,7 @@
         "description": "Five-tier open shelving unit featuring a mix of reclaimed wood and matte black iron."
     },
     {
+        "id": "prod_006",
         "name": "Scandinavian Coffee Table",
         "price": 199.0,
         "category": "Living Room",
@@ -42,6 +48,7 @@
         "description": "Round coffee table with a white lacquered top and light birch wood legs."
     },
     {
+        "id": "prod_007",
         "name": "Ergonomic Office Chair",
         "price": 425.0,
         "category": "Office",
@@ -49,6 +56,7 @@
         "description": "Breathable mesh back chair with adjustable lumbar support and 4D armrests."
     },
     {
+        "id": "prod_008",
         "name": "Marble Top Side Table",
         "price": 150.0,
         "category": "Living Room",
@@ -56,6 +64,7 @@
         "description": "Elegant side table with a genuine Carrara marble top and brushed brass frame."
     },
     {
+        "id": "prod_009",
         "name": "Rustic Wardrobe",
         "price": 950.0,
         "category": "Bedroom",
@@ -63,6 +72,7 @@
         "description": "Large double-door wardrobe with a distressed wood finish and antique iron handles."
     },
     {
+        "id": "prod_010",
         "name": "Woven Rattan Lounge Chair",
         "price": 275.0,
         "category": "Outdoor",
@@ -70,6 +80,7 @@
         "description": "Hand-woven natural rattan chair, perfect for sunrooms or covered patios."
     },
     {
+        "id": "prod_011",
         "name": "Floating Wall Shelves",
         "price": 65.0,
         "category": "Decor",
@@ -77,6 +88,7 @@
         "description": "Set of three hidden-bracket floating shelves in a dark espresso finish."
     },
     {
+        "id": "prod_012",
         "name": "Leather Bar Stool",
         "price": 185.0,
         "category": "Dining Room",
@@ -84,6 +96,7 @@
         "description": "Counter-height bar stool upholstered in top-grain cognac leather."
     },
     {
+        "id": "prod_013",
         "name": "Glass Top Desk",
         "price": 310.0,
         "category": "Office",
@@ -91,6 +104,7 @@
         "description": "Tempered glass work surface with a minimalist chrome trestle base."
     },
     {
+        "id": "prod_014",
         "name": "Floor Arc Lamp",
         "price": 120.0,
         "category": "Decor",
@@ -98,6 +112,7 @@
         "description": "Overarching floor lamp with a marble base and fabric drum shade."
     },
     {
+        "id": "prod_015",
         "name": "Tufted Headboard",
         "price": 240.0,
         "category": "Bedroom",
@@ -105,6 +120,7 @@
         "description": "Diamond-stitched button tufted headboard in a neutral linen fabric."
     },
     {
+        "id": "prod_016",
         "name": "Nesting Side Tables",
         "price": 145.0,
         "category": "Living Room",
@@ -112,6 +128,7 @@
         "description": "Set of two space-saving nesting tables with black metal frames."
     },
     {
+        "id": "prod_017",
         "name": "Ceramic Table Lamp",
         "price": 85.0,
         "category": "Decor",
@@ -119,6 +136,7 @@
         "description": "Hand-glazed ceramic base with a tapered white linen lampshade."
     },
     {
+        "id": "prod_018",
         "name": "Reclaimed Wood Mirror",
         "price": 210.0,
         "category": "Decor",
@@ -126,6 +144,7 @@
         "description": "Full-length floor mirror framed in authentic reclaimed barn wood."
     },
     {
+        "id": "prod_019",
         "name": "Modern TV Stand",
         "price": 380.0,
         "category": "Living Room",
@@ -133,6 +152,7 @@
         "description": "Sleek media console with cable management and sliding slatted doors."
     },
     {
+        "id": "prod_020",
         "name": "Outdoor Bistro Set",
         "price": 299.0,
         "category": "Outdoor",

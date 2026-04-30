@@ -43,6 +43,46 @@
   }
 }
 
+// Cart styles
+.cart-count {
+  background-color: $primary;
+  color: white;
+  border-radius: 50%;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: bold;
+  min-width: 1.2rem;
+  height: 1.2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.25rem;
+}
+
+.cart-item {
+  .cart-item-image {
+    border-radius: 4px;
+  }
+
+  .quantity-display {
+    min-width: 2rem;
+    text-align: center;
+    font-weight: 500;
+  }
+}
+
+.cartcanvas {
+  .cartcanvas-header {
+    border-bottom: 1px solid $gray-200;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .cartcanvas-body {
+    padding: 0;
+  }
+}
+
 @import "./swiper/swiper";
 @import "./utilities";
 

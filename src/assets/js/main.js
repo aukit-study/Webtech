@@ -4,6 +4,7 @@
 import * as bootstrap from 'bootstrap';
 import './custom.js';
 import './swiper.js'
+import './cart.js'
 
 // Import SCSS
 import '../scss/style.scss';
@@ -28,6 +29,9 @@ async function loadProducts() {
         // 2. เก็บข้อมูลลงในตัวแปรกลาง
         allProducts = await response.json();
         
+        // Make allProducts globally accessible for cart functionality
+        window.allProducts = allProducts;
+        
         // 3. แสดงผลสินค้าทั้งหมดในครั้งแรก
         renderProducts(allProducts);
 
@@ -46,13 +50,13 @@ function renderProducts(products) {
     const container = document.getElementById('product-container');
     container.innerHTML = products.map(product => `
         <div class="col-sm-6 col-md-4">
-            <div class="card h-100">
+            <div class="card h-100" data-product-id="${product.id}">
                 <img src="${product.urlimage}" class="card-img-top" style="height:250px; object-fit:cover;">
                 <div class="card-body">
                     <p class="text-muted small">${product.category}</p>
                     <h5 class="card-title">${product.name}</h5>
                     <p class="fw-bold text-primary">$${product.price}</p>
-                    <button class="btn btn-primary btn-sm">Add to Cart</button>
+                    <button class="btn btn-primary btn-sm btn-add-to-cart">Add to Cart</button>
                 </div>
             </div>
         </div>
@@ -116,6 +120,7 @@ function Search() {
         }, 500);
     });
 }
+
 
 
 document.addEventListener('DOMContentLoaded', loadProducts);
