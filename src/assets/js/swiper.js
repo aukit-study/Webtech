@@ -1,8 +1,3 @@
-// ✅ Import full Swiper bundle (includes all modules)
-import Swiper from 'swiper/bundle';
-import 'swiper/css/bundle';
-
-
 function initializeSwiperCarousels() {
 	const swiperContainers = document.querySelectorAll('.swiper-container');
 
