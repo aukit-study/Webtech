@@ -2,7 +2,8 @@ const productsService = require('../services/productsService');
 
 async function getProducts(req, res, next) {
   try {
-    const products = await productsService.getProducts();
+    const { category } = req.query;
+    const products = await productsService.getProducts(category);
     return res.json({ data: products });
   } catch (error) {
     console.error('ProductsController.getProducts error:', error);
