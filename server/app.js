@@ -3,6 +3,7 @@ const cors = require('cors'); // สำหรับอนุญาตให้ F
 const path = require('path');
 const productsRouter = require('./routes/products'); // นำเข้าเส้นทางสินค้า
 const authRouter = require('./routes/auth');
+const checkoutRouter = require('./routes/checkout');
 
 const app = express();
 const publicPath = path.resolve(__dirname, '..', 'src');
@@ -15,6 +16,7 @@ app.use(express.static(publicPath)); // Serve frontend files from src
 // Routes - เชื่อมต่อด่านหน้าไปยังเส้นทางต่างๆ
 app.use('/api', authRouter);
 app.use('/api', productsRouter);
+app.use('/api', checkoutRouter);
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(publicPath, 'index.html'));

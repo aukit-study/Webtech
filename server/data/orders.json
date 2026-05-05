@@ -1,0 +1,33 @@
+[
+  {
+    "id": "1",
+    "email": "test@example.com",
+    "creditCard": "************3456",
+    "items": [
+      {
+        "id": "prod_001",
+        "name": "Sofa",
+        "price": 899.99,
+        "quantity": 1
+      }
+    ],
+    "total": 899.99,
+    "timestamp": "2026-05-05T08:06:00.030Z"
+  },
+  {
+    "id": "2",
+    "email": "Aukit@gmail.com",
+    "creditCard": "************5645",
+    "items": [
+      {
+        "id": "prod_001",
+        "name": "Mid-Century Modern Sofa",
+        "price": 899.99,
+        "image": "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&q=80&w=800",
+        "quantity": 1
+      }
+    ],
+    "total": 899.99,
+    "timestamp": "2026-05-05T08:07:49.069Z"
+  }
+]
