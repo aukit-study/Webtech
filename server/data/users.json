@@ -1,69 +1,86 @@
 [
   {
+    "id": "1",
     "email": "sarah.jones@example.com",
-    "password_md5": "8ad80436573539744c776092078696d7",
-    "first_name": "Sarah",
-    "registration_date": "2026-01-12"
+    "passwordHash": "$2b$10$mdIkWz9alpVPzC/dSYHSd.Z.bsR.m1MVxMO0fygafRQBE5/fA/7b2",
+    "firstName": "Sarah",
+    "registrationDate": "2026-01-12"
   },
   {
+    "id": "2",
     "email": "mike.furnish@demo.net",
-    "password_md5": "5f4dcc3b5aa765d61d8327deb882cf99",
-    "first_name": "Michael",
-    "registration_date": "2026-02-05"
+    "passwordHash": "$2b$10$kPEBuB0UyQZglVAFIXsOUu5P.Ux290EQhIrPWfiIK2SlBThtYHZ8O",
+    "firstName": "Michael",
+    "registrationDate": "2026-02-05"
   },
   {
+    "id": "3",
     "email": "linda.decor@webmail.com",
-    "password_md5": "7c6a1e4f62088f11904a086b977756e7",
-    "first_name": "Linda",
-    "registration_date": "2026-02-14"
+    "passwordHash": "$2b$10$UOEEb6.5pA/TaGPr/wA0Y.X/2AbBk5RVUPCoEGf9Id7UqvIUxN81O",
+    "firstName": "Linda",
+    "registrationDate": "2026-02-14"
   },
   {
+    "id": "4",
     "email": "james.oak@provider.com",
-    "password_md5": "25f9e794323b453885f5181f1b624d0b",
-    "first_name": "James",
-    "registration_date": "2026-03-01"
+    "passwordHash": "$2b$10$EWH.KGib2Pl7S0zwz8UBA.YRi3QXGSCykzYcsX5Cjk8yGWBGWwaRa",
+    "firstName": "James",
+    "registrationDate": "2026-03-01"
   },
   {
+    "id": "5",
     "email": "emily.sofa@furniture.org",
-    "password_md5": "b3e9447228816c5b96783d5f81a7001c",
-    "first_name": "Emily",
-    "registration_date": "2026-03-10"
+    "passwordHash": "$2b$10$RC6Bb.FfQjsN0RKPWnPjvOgECK4shGlu35BwIfoegPsAXdjZf8pJW",
+    "firstName": "Emily",
+    "registrationDate": "2026-03-10"
   },
   {
+    "id": "6",
     "email": "robert.office@workspace.io",
-    "password_md5": "ed64593466181b6a71569427e02927c4",
-    "first_name": "Robert",
-    "registration_date": "2026-03-22"
+    "passwordHash": "$2b$10$B.8O8lxxkcieYA8mnWkpMOIweUOn90f1MzJ9cGjrddJwi6lq8NuMG",
+    "firstName": "Robert",
+    "registrationDate": "2026-03-22"
   },
   {
+    "id": "7",
     "email": "karen.light@interior.com",
-    "password_md5": "4a7d1ed414474e4033ac29ccb8653d9b",
-    "first_name": "Karen",
-    "registration_date": "2026-04-02"
+    "passwordHash": "$2b$10$z45n44mLBr6WRbm2m/uI7OEIL/qv/mD2NXp2WgZ4P.wS0ETySoECS",
+    "firstName": "Karen",
+    "registrationDate": "2026-04-02"
   },
   {
+    "id": "8",
     "email": "david.bench@home.net",
-    "password_md5": "63ee451939ed580ef3c4b86a04e1e85d",
-    "first_name": "David",
-    "registration_date": "2026-04-15"
+    "passwordHash": "$2b$10$ZaluP1eNHWO9A2.LonVb2OgahRReUbBIEPAVqSG0SMazVVdX8p/K6",
+    "firstName": "David",
+    "registrationDate": "2026-04-15"
   },
   {
+    "id": "9",
     "email": "alice.velvet@style.com",
-    "password_md5": "069646452f1680a656534289893a772c",
-    "first_name": "Alice",
-    "registration_date": "2026-04-20"
+    "passwordHash": "$2b$10$9C2dgZsevKqTr8TiyUPTh.hS9q5m2r3LTJokRBbfQXJc519RAY4zW",
+    "firstName": "Alice",
+    "registrationDate": "2026-04-20"
   },
   {
+    "id": "10",
     "email": "tom.rustic@woodwork.net",
-    "password_md5": "5e17441df90457499691b0f5b9d79043",
-    "first_name": "Thomas",
-    "registration_date": "2026-05-01"
+    "passwordHash": "$2b$10$.7HgXdtSVRS/BgMKvSeAH.t8N46GZPRoaizBnMRRwg4oaBnmZANya",
+    "firstName": "Thomas",
+    "registrationDate": "2026-05-01"
   },
   {
     "id": "11",
     "email": "test@example.com",
     "passwordHash": "$2b$10$8XTEwxh9XEJVjq7Vfqeq.eOVbxN3pkuYtdaQgDLT3JsfUnBj4E76W",
     "firstName": "Test",
+    "registrationDate": "2026-05-05"
+  },
+  {
+    "id": "12",
+    "email": "aukit@gmail.com",
+    "passwordHash": "$2b$10$4J7Gp4JagijSqxd/xLuWrOP5dw0a6Q8cVMzY11eChllojJEokeHru",
+    "firstName": "Aukit",
     "registrationDate": "2026-05-05"
   }
 ]
