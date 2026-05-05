@@ -1,42 +1,37 @@
 
 
-import './custom.js';
-import './swiper.js';
+
 import './cart.js';
 
 let allProducts = [];
 let selectedCategory = "All";
 let debounceTimer;
 
-async function loadProducts() {
+async function loadProducts(category = "All") {
     const container = document.getElementById('product-container');
-    
-    // ตรวจสอบว่ามี container นี้อยู่ในหน้าเว็บไหม (กัน Error กรณีรัน script ในหน้าอื่น)
     if (!container) return;
 
     try {
-        const response = await fetch('./assets/data/products.json');
+        // 1. Trigger: User selection leads to a Request
+        // 2. Request: The browser sends a specific "envelope" to the Server
+        const url = category === "All"
+            ? '/api/products'
+            : `/api/products?category=${encodeURIComponent(category)}`;
+        const response = await fetch(url);
 
         if (!response.ok) {
-            throw new Error('ไม่สามารถโหลดไฟล์ products.json ได้ ตรวจสอบ Path อีกครั้ง');
+            throw new Error('Server returned an error status');
         }
-
-        // 2. เก็บข้อมูลลงในตัวแปรกลาง
-        allProducts = await response.json();
+        // 3. Response: Receiving the "Package" (JSON)
+        const result = await response.json();
+        allProducts = result.data;
         
-        // Make allProducts globally accessible for cart functionality
         window.allProducts = allProducts;
-        
-        // 3. แสดงผลสินค้าทั้งหมดในครั้งแรก
         renderProducts(allProducts);
-
-        // เรียกใช้ระบบจัดการปุ่มกรองหมวดหมู่หลังจากโหลดข้อมูลเสร็จ
-        Filter();
-        Search();
 
     } catch (error) {
         console.error("Fetch Error:", error);
-        container.innerHTML = `<div class="col-12 text-center"><p class="text-danger">เกิดข้อผิดพลาด: ${error.message}</p></div>`;
+        container.innerHTML = `<p class="text-danger">Failed to load: ${error.message}</p>`;
     }
 }
 
@@ -116,6 +111,106 @@ function Search() {
     });
 }
 
+function initializeSwiperCarousels() {
+	const swiperContainers = document.querySelectorAll('.swiper-container');
+
+	swiperContainers.forEach((swiperContainer) => {
+		const speed = swiperContainer.getAttribute('data-speed') || 400;
+		const spaceBetween = swiperContainer.getAttribute('data-space-between') || 20;
+		const paginationEnabled = swiperContainer.getAttribute('data-pagination') === 'true';
+		const navigationEnabled = swiperContainer.getAttribute('data-navigation') === 'true';
+		const autoplayEnabled = swiperContainer.getAttribute('data-autoplay') === 'true';
+		const autoplayDelay = swiperContainer.getAttribute('data-autoplay-delay') || 3000;
+		const paginationType = swiperContainer.getAttribute('data-pagination-type') || 'bullets';
+		const centerSlides = swiperContainer.getAttribute('data-center-slides') === 'true';
+		const effect = swiperContainer.getAttribute('data-effect') || 'slide';
+		const thumbsEnabled = swiperContainer.getAttribute('data-thumbs') === 'true';
+
+		let breakpoints = {};
+		const breakpointsData = swiperContainer.getAttribute('data-breakpoints');
+		if (breakpointsData) {
+			try {
+				breakpoints = JSON.parse(breakpointsData);
+			} catch (error) {
+				console.error('Error parsing breakpoints data:', error);
+			}
+		}
+
+		const swiperOptions = {
+			speed: parseInt(speed),
+			spaceBetween: parseInt(spaceBetween),
+			breakpoints: breakpoints,
+			slidesPerView: 'auto',
+			effect: effect,
+		};
+
+		if (effect === 'fade') {
+			swiperOptions.fadeEffect = { crossFade: true };
+		}
+
+		if (centerSlides) {
+			swiperOptions.centeredSlides = true;
+		}
+
+		// ✅ Pagination
+		if (paginationEnabled) {
+			const paginationEl = swiperContainer.querySelector('.swiper-pagination');
+			if (paginationEl) {
+				swiperOptions.pagination = {
+					el: paginationEl,
+					clickable: true,
+					type: paginationType,
+				};
+			}
+		}
+
+		// ✅ Navigation
+		if (navigationEnabled) {
+			const nextButton = swiperContainer.querySelector('.swiper-button-next');
+			const prevButton = swiperContainer.querySelector('.swiper-button-prev');
+			swiperOptions.navigation = {
+				nextEl: nextButton,
+				prevEl: prevButton,
+			};
+		}
+
+		// ✅ Autoplay
+		if (autoplayEnabled) {
+			swiperOptions.autoplay = { delay: parseInt(autoplayDelay) };
+		}
+
+		// ✅ Thumbs (optional)
+		let thumbsSwiper;
+		if (thumbsEnabled) {
+			const thumbsContainer = swiperContainer.nextElementSibling;
+			if (thumbsContainer && thumbsContainer.classList.contains('swiper-thumbs')) {
+				thumbsSwiper = new Swiper(thumbsContainer, {
+					spaceBetween: 10,
+					slidesPerView: 4,
+					freeMode: true,
+					watchSlidesProgress: true,
+				});
+				swiperOptions.thumbs = { swiper: thumbsSwiper };
+			}
+		}
+
+		// ✅ Initialize Swiper
+		new Swiper(swiperContainer, swiperOptions);
+	});
+}
+
+// ✅ Optional: Reinitialize when modal is shown
+const modalElement = document.getElementById('quickViewModal');
+if (modalElement) {
+	modalElement.addEventListener('shown.bs.modal', function () {
+		initializeSwiperCarousels();
+	});
+}
 
 
-document.addEventListener('DOMContentLoaded', loadProducts);
+document.addEventListener('DOMContentLoaded', () => {
+    Filter(); // เรียกใช้งานระบบกรอง
+    Search(); // เรียกใช้งานระบบค้นหา
+    initializeSwiperCarousels();
+    loadProducts();
+});

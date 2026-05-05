@@ -1,7 +1,7 @@
 const fs = require('fs/promises');
 const path = require('path');
 
-const productsFilePath = path.resolve(__dirname, '../..', 'src', 'assets', 'data', 'products.json');
+const productsFilePath = path.resolve(__dirname, '..', 'data', 'products.json');
 
 async function getProducts(category) {
   const rawData = await fs.readFile(productsFilePath, 'utf8');

@@ -1,0 +1,69 @@
+[
+  {
+    "email": "sarah.jones@example.com",
+    "password_md5": "8ad80436573539744c776092078696d7",
+    "first_name": "Sarah",
+    "registration_date": "2026-01-12"
+  },
+  {
+    "email": "mike.furnish@demo.net",
+    "password_md5": "5f4dcc3b5aa765d61d8327deb882cf99",
+    "first_name": "Michael",
+    "registration_date": "2026-02-05"
+  },
+  {
+    "email": "linda.decor@webmail.com",
+    "password_md5": "7c6a1e4f62088f11904a086b977756e7",
+    "first_name": "Linda",
+    "registration_date": "2026-02-14"
+  },
+  {
+    "email": "james.oak@provider.com",
+    "password_md5": "25f9e794323b453885f5181f1b624d0b",
+    "first_name": "James",
+    "registration_date": "2026-03-01"
+  },
+  {
+    "email": "emily.sofa@furniture.org",
+    "password_md5": "b3e9447228816c5b96783d5f81a7001c",
+    "first_name": "Emily",
+    "registration_date": "2026-03-10"
+  },
+  {
+    "email": "robert.office@workspace.io",
+    "password_md5": "ed64593466181b6a71569427e02927c4",
+    "first_name": "Robert",
+    "registration_date": "2026-03-22"
+  },
+  {
+    "email": "karen.light@interior.com",
+    "password_md5": "4a7d1ed414474e4033ac29ccb8653d9b",
+    "first_name": "Karen",
+    "registration_date": "2026-04-02"
+  },
+  {
+    "email": "david.bench@home.net",
+    "password_md5": "63ee451939ed580ef3c4b86a04e1e85d",
+    "first_name": "David",
+    "registration_date": "2026-04-15"
+  },
+  {
+    "email": "alice.velvet@style.com",
+    "password_md5": "069646452f1680a656534289893a772c",
+    "first_name": "Alice",
+    "registration_date": "2026-04-20"
+  },
+  {
+    "email": "tom.rustic@woodwork.net",
+    "password_md5": "5e17441df90457499691b0f5b9d79043",
+    "first_name": "Thomas",
+    "registration_date": "2026-05-01"
+  },
+  {
+    "id": "11",
+    "email": "test@example.com",
+    "passwordHash": "$2b$10$8XTEwxh9XEJVjq7Vfqeq.eOVbxN3pkuYtdaQgDLT3JsfUnBj4E76W",
+    "firstName": "Test",
+    "registrationDate": "2026-05-05"
+  }
+]

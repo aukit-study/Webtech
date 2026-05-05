@@ -1,0 +1,38 @@
+/* Login page custom styles */
+.login-page {
+  min-height: calc(100vh - 112px);
+}
+.login-section {
+  display: flex;
+  min-height: calc(100vh - 112px);
+  align-items: center;
+}
+.login-card {
+  background: rgba(255, 255, 255, 0.97);
+}
+.login-card .form-label {
+  font-weight: 600;
+}
+.login-card .form-control {
+  border-radius: 0.75rem;
+  padding: 1rem 1rem;
+}
+.login-card .btn-primary {
+  border-radius: 0.75rem;
+  font-weight: 600;
+}
+.login-card a {
+  color: var(--bs-primary);
+}
+.login-card a:hover {
+  color: var(--bs-secondary);
+}
+@media (max-width: 767px) {
+  .login-page {
+    min-height: auto;
+  }
+  .login-section {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+}
