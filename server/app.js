@@ -1,6 +1,35 @@
 const express = require('express');
 const cors = require('cors'); // สำหรับอนุญาตให้ Frontend เข้าถึง API
 const path = require('path');
+const db = require('./db'); // Initialize SQLite database
+
+// Update database schema for shipping info
+db.db.serialize(() => {
+  // Add shipping columns to orders table
+  db.db.run(`
+    ALTER TABLE orders ADD COLUMN customer_name TEXT;
+  `, (err) => {
+    if (err && !err.message.includes('duplicate column name')) {
+      console.log('Note: customer_name column may already exist');
+    }
+  });
+
+  db.db.run(`
+    ALTER TABLE orders ADD COLUMN customer_address TEXT;
+  `, (err) => {
+    if (err && !err.message.includes('duplicate column name')) {
+      console.log('Note: customer_address column may already exist');
+    }
+  });
+
+  db.db.run(`
+    ALTER TABLE orders ADD COLUMN customer_phone TEXT;
+  `, (err) => {
+    if (err && !err.message.includes('duplicate column name')) {
+      console.log('Note: customer_phone column may already exist');
+    }
+  });
+});
 const productsRouter = require('./routes/products'); // นำเข้าเส้นทางสินค้า
 const authRouter = require('./routes/auth');
 const checkoutRouter = require('./routes/checkout');

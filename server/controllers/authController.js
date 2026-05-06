@@ -15,7 +15,7 @@ async function login(req, res) {
     return res.status(401).json({ message: 'Email or password is incorrect' });
   }
 
-  const passwordMatches = await authService.verifyPassword(password, user.passwordHash);
+  const passwordMatches = await authService.verifyPassword(password, user.password);
   if (!passwordMatches) {
     return res.status(401).json({ message: 'Email or password is incorrect' });
   }
@@ -24,14 +24,14 @@ async function login(req, res) {
     expiresIn: '1h',
   });
 
-  return res.status(200).json({ token, message: 'Login successful' });
+  return res.status(200).json({ token, message: 'Login successful...' });
 }
 
 async function register(req, res) {
-  const { email, password, firstName } = req.body;
+  const { email, password } = req.body;
 
-  if (!email || !password || !firstName) {
-    return res.status(400).json({ message: 'Email, password, and first name are required' });
+  if (!email || !password) {
+    return res.status(400).json({ message: 'Email and password are required' });
   }
 
   try {
@@ -40,7 +40,7 @@ async function register(req, res) {
       return res.status(409).json({ message: 'Email already exists' });
     }
 
-    const newUser = await authService.createUser(email, password, firstName);
+    const newUser = await authService.createUser(email, password);
     const token = jwt.sign({ userId: newUser.id, email: newUser.email }, JWT_SECRET, {
       expiresIn: '1h',
     });

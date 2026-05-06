@@ -82,5 +82,12 @@
     "passwordHash": "$2b$10$4J7Gp4JagijSqxd/xLuWrOP5dw0a6Q8cVMzY11eChllojJEokeHru",
     "firstName": "Aukit",
     "registrationDate": "2026-05-05"
+  },
+  {
+    "id": "13",
+    "email": "awdda@awdadawd",
+    "passwordHash": "$2b$10$dcwk7X..AMUz0Jgrle.zg.SqBccI7cdHqQnnJW58JnKP9qUyFikkC",
+    "firstName": "awd",
+    "registrationDate": "2026-05-06"
   }
 ]

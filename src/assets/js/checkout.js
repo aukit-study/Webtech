@@ -20,7 +20,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const email = document.getElementById('email').value.trim();
     const creditCard = document.getElementById('creditCard').value.replace(/\s/g, '');
-    
+    const customerName = document.getElementById('customerName').value.trim();
+    const customerAddress = document.getElementById('customerAddress').value.trim();
+    const customerPhone = document.getElementById('customerPhone').value.trim();
+
     // Get cart items from localStorage
     const cartItems = JSON.parse(localStorage.getItem('furnitureCart')) || [];
 
@@ -31,15 +34,17 @@ document.addEventListener('DOMContentLoaded', () => {
         body: JSON.stringify({
           cartItems,
           email,
-          creditCard
+          creditCard,
+          customerName,
+          customerAddress,
+          customerPhone
         })
       });
 
       const result = await response.json();
 
-      // Clear error messages
-      document.getElementById('email-error').classList.add('d-none');
-      document.getElementById('creditCard-error').classList.add('d-none');
+      // Clear all error messages
+      document.querySelectorAll('.text-danger').forEach(el => el.classList.add('d-none'));
       document.getElementById('error-message').classList.add('d-none');
       document.getElementById('success-message').classList.add('d-none');
 
@@ -53,21 +58,15 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         // Validation failed - show errors WITHOUT clearing cart
         if (result.errors) {
-          if (result.errors.email) {
-            document.getElementById('email-error').textContent = result.errors.email;
-            document.getElementById('email-error').classList.remove('d-none');
-          }
-          if (result.errors.creditCard) {
-            document.getElementById('creditCard-error').textContent = result.errors.creditCard;
-            document.getElementById('creditCard-error').classList.remove('d-none');
-          }
-          if (result.errors.cartItems) {
-            const errorDiv = document.getElementById('error-message');
-            errorDiv.textContent = result.errors.cartItems;
-            errorDiv.classList.remove('d-none');
-          }
+          Object.keys(result.errors).forEach(field => {
+            const errorElement = document.getElementById(`${field}-error`);
+            if (errorElement) {
+              errorElement.textContent = result.errors[field];
+              errorElement.classList.remove('d-none');
+            }
+          });
         }
-        
+
         // Show main error message if no specific field errors
         if (!result.errors || Object.keys(result.errors).length === 0) {
           const errorDiv = document.getElementById('error-message');

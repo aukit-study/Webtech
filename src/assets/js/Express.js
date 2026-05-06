@@ -36,7 +36,7 @@ router.post('/api/login', async (req, res) => {
 
         // 4. Return success
         res.status(200).json({ 
-            message: "Login successful",
+            message: "Login successful...",
             token: token
         });
         console.log("เข้าสู่ระบบสำเร็จ!");

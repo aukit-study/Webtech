@@ -1,38 +1,44 @@
-const fs = require('fs/promises');
-const path = require('path');
 const bcrypt = require('bcrypt');
+const { getOne, runQuery } = require('../db');
 
-const usersFilePath = path.resolve(__dirname, '..', 'data', 'users.json');
-
+// Get user by email
 async function getUserByEmail(email) {
-  const fileContent = await fs.readFile(usersFilePath, 'utf8');
-  const users = JSON.parse(fileContent);
-  return users.find((user) => user.email.toLowerCase() === String(email).toLowerCase());
+  try {
+    const user = await getOne(
+      'SELECT id, email, password, created_at FROM users WHERE email = ?',
+      [email.toLowerCase()]
+    );
+    return user;
+  } catch (error) {
+    throw new Error(`Failed to get user: ${error.message}`);
+  }
 }
 
+// Verify password
 async function verifyPassword(password, passwordHash) {
   return bcrypt.compare(password, passwordHash);
 }
 
-async function createUser(email, password, firstName) {
-  const fileContent = await fs.readFile(usersFilePath, 'utf8');
-  const users = JSON.parse(fileContent);
+// Create new user
+async function createUser(email, password) {
+  try {
+    const passwordHash = await bcrypt.hash(password, 10);
+    
+    const result = await runQuery(
+      'INSERT INTO users (email, password) VALUES (?, ?)',
+      [email.toLowerCase(), passwordHash]
+    );
 
-  const newId = (users.length + 1).toString();
-  const passwordHash = await bcrypt.hash(password, 10);
+    const newUser = {
+      id: result.id,
+      email: email.toLowerCase(),
+      created_at: new Date().toISOString()
+    };
 
-  const newUser = {
-    id: newId,
-    email: email.toLowerCase(),
-    passwordHash,
-    firstName,
-    registrationDate: new Date().toISOString().split('T')[0] // YYYY-MM-DD
-  };
-
-  users.push(newUser);
-  await fs.writeFile(usersFilePath, JSON.stringify(users, null, 2));
-
-  return newUser;
+    return newUser;
+  } catch (error) {
+    throw new Error(`Failed to create user: ${error.message}`);
+  }
 }
 
 module.exports = {

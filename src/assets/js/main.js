@@ -58,6 +58,8 @@ function Filter() {
     const filterLinks = document.querySelectorAll('.filter-link');
     const applyBtn = document.getElementById('apply-filter-btn');
 
+    if (!applyBtn) return; // Exit if apply button doesn't exist
+
     // 1. เมื่อคลิกที่ชื่อหมวดหมู่ (แค่เลือกไว้ ยังไม่กรอง)
     filterLinks.forEach(link => {
         link.addEventListener('click', (e) => {
