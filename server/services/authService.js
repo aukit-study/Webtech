@@ -1,43 +1,57 @@
 const bcrypt = require('bcrypt');
-const { getOne, runQuery } = require('../db');
+const UserRepository = require('../repositories/UserRepository');
 
-// Get user by email
+/**
+ * AuthService - Handles authentication business logic
+ * Uses UserRepository for data access
+ */
+
+/**
+ * Get user by email
+ * @param {string} email - User email
+ * @returns {Promise<Object|null>} User object or null
+ */
 async function getUserByEmail(email) {
   try {
-    const user = await getOne(
-      'SELECT id, email, password, created_at FROM users WHERE email = ?',
-      [email.toLowerCase()]
-    );
+    const user = await UserRepository.getUserByEmail(email);
     return user;
   } catch (error) {
-    throw new Error(`Failed to get user: ${error.message}`);
+    throw new Error(`AuthService - getUserByEmail failed: ${error.message}`);
   }
 }
 
-// Verify password
+/**
+ * Verify password against hash
+ * @param {string} password - Plain text password
+ * @param {string} passwordHash - Hashed password from database
+ * @returns {Promise<boolean>} True if password matches
+ */
 async function verifyPassword(password, passwordHash) {
-  return bcrypt.compare(password, passwordHash);
+  try {
+    return await bcrypt.compare(password, passwordHash);
+  } catch (error) {
+    throw new Error(`AuthService - verifyPassword failed: ${error.message}`);
+  }
 }
 
-// Create new user
+/**
+ * Create new user (registration)
+ * Business logic: hash password, then create user
+ * @param {string} email - User email
+ * @param {string} password - Plain text password
+ * @returns {Promise<Object>} Created user object
+ */
 async function createUser(email, password) {
   try {
+    // Business logic: hash the password
     const passwordHash = await bcrypt.hash(password, 10);
     
-    const result = await runQuery(
-      'INSERT INTO users (email, password) VALUES (?, ?)',
-      [email.toLowerCase(), passwordHash]
-    );
-
-    const newUser = {
-      id: result.id,
-      email: email.toLowerCase(),
-      created_at: new Date().toISOString()
-    };
+    // Data access: create user in repository
+    const newUser = await UserRepository.create(email, passwordHash);
 
     return newUser;
   } catch (error) {
-    throw new Error(`Failed to create user: ${error.message}`);
+    throw new Error(`AuthService - createUser failed: ${error.message}`);
   }
 }
 

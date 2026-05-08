@@ -10,12 +10,14 @@ document.querySelector('form').addEventListener('submit', async (e) => {
     successMessage.classList.add('d-none');
     errorMessage.classList.add('d-none');
 
+
+
     try {
         // ส่ง "Envelope" ไปยัง Server
         const response = await fetch('http://localhost:3000/api/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password })
         });
 
         const result = await response.json().catch(() => ({}));
@@ -25,7 +27,7 @@ document.querySelector('form').addEventListener('submit', async (e) => {
             // แสดง Success Alert
             successMessage.textContent = result.message || "ยินดีต้อนรับกลับมา!";
             successMessage.classList.remove('d-none');
-            
+
             // Redirect หลังจาก 2 วินาที
             setTimeout(() => {
                 window.location.href = 'index.html';

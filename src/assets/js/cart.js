@@ -1,4 +1,4 @@
- // Cart functionality
+// Cart functionality
 class ShoppingCart {
     constructor() {
         this.cart = this.loadCartFromStorage();
@@ -25,20 +25,20 @@ class ShoppingCart {
     // Add product to cart
     addToCart(productID) {
         // Use .find() to check if the product exists in cart
-        const existingItem = this.cart.find(item => item.id === productID);
+        const existingItem = this.cart.find(item => item.id.toString() === productID.toString());
 
         if (existingItem) {
             // If it exists, increment the quantity
             existingItem.quantity += 1;
         } else {
             // If not, find the product from allProducts using the productID and push it to the cart
-            const product = window.allProducts.find(p => p.id === productID);
+            const product = window.allProducts.find(p => p.id.toString() === productID.toString());
             if (product) {
                 this.cart.push({
                     id: product.id,
                     name: product.name,
                     price: product.price,
-                    image: product.urlimage,
+                    image: product.urlimage || product.image,
                     quantity: 1
                 });
             } else {
@@ -52,16 +52,16 @@ class ShoppingCart {
         this.updateCartUI();
 
         // Show success message
-        const product = window.allProducts.find(p => p.id === productID);
-        if (product) {
-            this.showNotification(`${product.name} has been added to your cart!`, 'success');
+        const productForAlert = window.allProducts.find(p => p.id.toString() === productID.toString());
+        if (productForAlert) {
+            window.showNotification(`${productForAlert.name} has been added to your cart!`, 'success');
         }
     }
 
     // Remove product from cart
     removeFromCart(productId) {
-        this.cart = this.cart.filter(item => item.id !== productId);
-        this.saveCartToStorage();
+        this.cart = this.cart.filter(item => item.id.toString() !== productId.toString());
+        this.saveToLocalStorage();
         this.updateCartUI();
     }
 
@@ -72,10 +72,10 @@ class ShoppingCart {
             return;
         }
 
-        const item = this.cart.find(item => item.id === productId);
+        const item = this.cart.find(item => item.id.toString() === productId.toString());
         if (item) {
             item.quantity = newQuantity;
-            this.saveCartToStorage();
+            this.saveToLocalStorage();
             this.updateCartUI();
         }
     }
@@ -98,7 +98,7 @@ class ShoppingCart {
     // Clear entire cart
     clearCart() {
         this.cart = [];
-        this.saveCartToStorage();
+        this.saveToLocalStorage();
         this.updateCartUI();
     }
 
@@ -122,7 +122,7 @@ class ShoppingCart {
                 cartCountElement.style.display = 'inline-block';
             } else {
                 // คุณสามารถเลือกได้ว่าจะให้แสดงเลข 0 หรือซ่อนไปเลย
-                cartCountElement.textContent = '0'; 
+                cartCountElement.textContent = '0';
                 // cartCountElement.style.display = 'none'; // หากต้องการซ่อนเมื่อไม่มีสินค้า
             }
         }
@@ -168,7 +168,7 @@ class ShoppingCart {
 
     // Increase quantity of specific item
     increaseQuantity(productId) {
-        const item = this.cart.find(item => item.id === productId);
+        const item = this.cart.find(item => item.id.toString() === productId.toString());
         if (item) {
             this.updateQuantity(productId, item.quantity + 1);
         }
@@ -176,7 +176,7 @@ class ShoppingCart {
 
     // Decrease quantity of specific item
     decreaseQuantity(productId) {
-        const item = this.cart.find(item => item.id === productId);
+        const item = this.cart.find(item => item.id.toString() === productId.toString());
         if (item) {
             this.updateQuantity(productId, item.quantity - 1);
         }
@@ -196,29 +196,12 @@ class ShoppingCart {
             }
         });
     }
-
-    // Show notification message
-    showNotification(message, type = 'info') {
-        // Create notification element
-        const notification = document.createElement('div');
-        notification.className = `alert alert-${type === 'success' ? 'success' : 'info'} alert-dismissible fade show position-fixed`;
-        notification.style.cssText = 'top: 20px; right: 20px; z-index: 9999; min-width: 300px;';
-        notification.innerHTML = `
-            ${message}
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-        `;
-
-        document.body.appendChild(notification);
-        setTimeout(() => {
-            if (notification.parentNode) {
-                notification.remove();
-            }
-        }, 1000);
-    }
 }
 
 // Create global cart instance
 const cart = new ShoppingCart();
+window.ShoppingCart = ShoppingCart;
+window.cart = cart; // Make it accessible to inline onclick handlers in HTML
 
 // Initialize cart when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {

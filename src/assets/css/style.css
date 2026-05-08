@@ -25309,3 +25309,58 @@ textarea.form-control-lg {
 }
 
 /*# sourceMappingURL=style.css.map */
+/* Custom Toast Notification */
+.custom-toast {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 10000;
+    background: white;
+    color: #333;
+    min-width: 320px;
+    padding: 16px 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    transform: translateX(120%);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.custom-toast.show {
+    transform: translateX(0);
+}
+
+.custom-toast.success {
+    border-left: 5px solid #10B981;
+}
+
+.custom-toast.info {
+    border-left: 5px solid #3B82F6;
+}
+
+.custom-toast-icon.success {
+    color: #10B981;
+    font-size: 1.25rem;
+}
+
+.custom-toast-icon.info {
+    color: #3B82F6;
+    font-size: 1.25rem;
+}
+
+.custom-toast-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #9CA3AF;
+    padding: 4px;
+}
+
+.custom-toast-close:hover {
+    color: #6B7280;
+}

@@ -1,45 +1,59 @@
-const { getAll, getOne } = require('../db');
+const ProductRepository = require('../repositories/ProductRepository');
 
-// Get all products or filter by category
+/**
+ * ProductService - Handles product business logic
+ * Uses ProductRepository for data access
+ */
+
+/**
+ * Get all products, optionally filtered by category
+ * Business logic: filter by category if provided
+ * @param {string} category - Optional category filter
+ * @returns {Promise<Array>} Array of products
+ */
 async function getProducts(category) {
   try {
-    let query = 'SELECT * FROM products ORDER BY id';
-    let params = [];
+    let products;
 
     if (category) {
-      query = 'SELECT * FROM products WHERE LOWER(description) LIKE ? OR LOWER(name) LIKE ? ORDER BY id';
-      const searchTerm = `%${category.toLowerCase()}%`;
-      params = [searchTerm, searchTerm];
+      // Business logic: search by category
+      products = await ProductRepository.searchByCategory(category);
+    } else {
+      // Business logic: get all products
+      products = await ProductRepository.findAll();
     }
 
-    const products = await getAll(query, params);
     return products;
   } catch (error) {
-    throw new Error(`Failed to fetch products: ${error.message}`);
+    throw new Error(`ProductService - getProducts failed: ${error.message}`);
   }
 }
 
-// Get product by ID
+/**
+ * Get single product by ID
+ * @param {number} id - Product ID
+ * @returns {Promise<Object|null>} Product object or null
+ */
 async function getProductById(id) {
   try {
-    const product = await getOne('SELECT * FROM products WHERE id = ?', [id]);
+    const product = await ProductRepository.findById(id);
     return product;
   } catch (error) {
-    throw new Error(`Failed to fetch product: ${error.message}`);
+    throw new Error(`ProductService - getProductById failed: ${error.message}`);
   }
 }
 
-// Get products by IDs (for cart)
+/**
+ * Get multiple products by IDs (for shopping cart)
+ * @param {Array<number>} ids - Array of product IDs
+ * @returns {Promise<Array>} Array of products
+ */
 async function getProductsByIds(ids) {
   try {
-    if (!ids || ids.length === 0) return [];
-
-    const placeholders = ids.map(() => '?').join(',');
-    const query = `SELECT * FROM products WHERE id IN (${placeholders})`;
-    const products = await getAll(query, ids);
+    const products = await ProductRepository.findByIds(ids);
     return products;
   } catch (error) {
-    throw new Error(`Failed to fetch products by IDs: ${error.message}`);
+    throw new Error(`ProductService - getProductsByIds failed: ${error.message}`);
   }
 }
 

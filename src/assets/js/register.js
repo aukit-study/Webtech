@@ -7,7 +7,7 @@ document.querySelector('form').addEventListener('submit', async (e) => {
     const confirmPassword = document.getElementById('confirmPassword').value;
 
     if (password !== confirmPassword) {
-        alert('Passwords do not match');
+        window.showNotification('Passwords do not match', 'info');
         return;
     }
 
@@ -22,13 +22,15 @@ document.querySelector('form').addEventListener('submit', async (e) => {
 
         if (response.status === 201) {
             localStorage.setItem('userToken', result.token);
-            alert(result.message || 'Registration successful!');
-            window.location.href = 'index.html';
+            window.showNotification(result.message || 'Registration successful!', 'success');
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 1500); // Give time for toast to show
         } else {
-            alert(result.message || 'Registration failed');
+            window.showNotification(result.message || 'Registration failed', 'info');
         }
     } catch (error) {
         console.error('Registration error:', error);
-        alert('Unable to connect to server');
+        window.showNotification('Unable to connect to server', 'info');
     }
 });

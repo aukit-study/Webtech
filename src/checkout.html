@@ -1,239 +1,245 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Checkout - Furnish</title>
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <link rel="stylesheet" href="./assets/css/login.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css">
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-lg bg-white shadow-sm px-4 py-3 navbar-custom">
-      <div class="container-fluid px-0">
-        <a class="navbar-brand" href="index.html">
-          <span class="d-flex flex-column text-uppercase text-xs fw-bold lh-sm">
-            <span class="" style="letter-spacing: .12rem;">Furnish</span>
-            <span>Template</span>
-          </span>
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
-            <li class="nav-item">
-              <a class="nav-link" href="index.html">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="about.html">About us</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="products.html">Products</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="testimonials.html">Testimonials</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="checkout.html">Checkout</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="contact.html">Contact</a>
-            </li>
-            <li class="nav-item login-btn">
-              <a class="nav-link" href="login.html">Login</a>
-            </li>
-            <li class="nav-item login-btn">
-              <a class="nav-link" href="register.html">Register</a>
-            </li>
-            <li class="nav-item logout-btn" style="display: none;">
-              <a class="nav-link" href="#" onclick="authManager.logout()">Logout</a>
-            </li>
-          </ul>
-        </div>
-        <div class="d-flex align-items-center gap-4">
-          <span class="d-flex align-items-center gap-2 fw-bold">
-            <span class="position-relative">
-              <i class="bi bi-cart" data-bs-toggle="offcanvas" href="#cartcanvasExample" role="button" aria-controls="cartcanvasExample"></i>
-              <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.7rem;">
-                0
-              </span>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout - Furnish</title>
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="./assets/css/login.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg bg-white shadow-sm px-4 py-3 navbar-custom">
+    <div class="container-fluid px-0">
+      <a class="navbar-brand" href="index.html">
+        <span class="d-flex flex-column text-uppercase text-xs fw-bold lh-sm">
+          <span class="" style="letter-spacing: .12rem;">Furnish</span>
+          <span>Template</span>
+        </span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="mx-auto d-lg-block d-none">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="products.html">Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="testimonials.html">Testimonials</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="contact.html">Contact</a>
+          </li>
+        </ul>
+      </div>
+      <div class="d-flex align-items-center gap-4">
+        <span class="d-flex align-items-center gap-2 fw-bold">
+          <span class="position-relative">
+            <i class="bi bi-cart" data-bs-toggle="offcanvas" href="#cartcanvasExample" role="button"
+              aria-controls="cartcanvasExample"></i>
+            <span id="cart-count"
+              class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+              style="font-size: 0.7rem;">
+              0
             </span>
           </span>
-          <a class="" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-list"
-              viewBox="0 0 16 16">
-              <path fill-rule="evenodd"
-                d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
-            </svg>
-          </a>
-        </div>
+        </span>
+        <button class="btn btn-outline-primary me-2 auth-btn d-none d-lg-block" id="navbar-auth-btn">Login</button>
+        <a class="" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-list"
+            viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
+          </svg>
+        </a>
       </div>
-    </nav>
+    </div>
+  </nav>
 
-    <main class="login-page bg-light">
-      <section class="login-section py-8">
-        <div class="container">
-          <div class="row justify-content-center align-items-center">
-            <div class="col-lg-6 col-md-8">
-              <div class="card login-card shadow-lg rounded-4 border-0">
-                <div class="card-body p-5">
-                  <div class="text-center mb-4">
-                    <h1 class="h3 mb-2">Checkout</h1>
-                    <p class="text-muted mb-0">Complete your purchase</p>
-                  </div>
-
-                  <!-- Cart Summary -->
-                  <div class="mb-4 p-3 bg-light border rounded">
-                    <h5 class="mb-3">Order Summary</h5>
-                    <div id="cart-summary">
-                      <p class="text-muted">Loading cart...</p>
-                    </div>
-                    <div class="border-top mt-3 pt-3">
-                      <div class="d-flex justify-content-between fw-bold">
-                        <span>Total:</span>
-                        <span id="order-total">$0.00</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Checkout Form -->
-                  <form id="checkout-form">
-                    <!-- Shipping Information -->
-                    <h5 class="mb-3">Shipping Information</h5>
-                    <div class="mb-3">
-                      <label for="customerName" class="form-label">Full Name</label>
-                      <input type="text" class="form-control" id="customerName" placeholder="John Doe" required>
-                      <small id="customerName-error" class="text-danger d-none"></small>
-                    </div>
-
-                    <div class="mb-3">
-                      <label for="customerAddress" class="form-label">Shipping Address</label>
-                      <textarea class="form-control" id="customerAddress" rows="3" placeholder="123 Main St, City, State, ZIP Code" required></textarea>
-                      <small id="customerAddress-error" class="text-danger d-none"></small>
-                    </div>
-
-                    <div class="mb-3">
-                      <label for="customerPhone" class="form-label">Phone Number</label>
-                      <input type="tel" class="form-control" id="customerPhone" placeholder="+1 (555) 123-4567" required>
-                      <small id="customerPhone-error" class="text-danger d-none"></small>
-                    </div>
-
-                    <hr class="my-4">
-
-                    <!-- Payment Information -->
-                    <h5 class="mb-3">Payment Information</h5>
-                    <div class="mb-3">
-                      <label for="email" class="form-label">Email</label>
-                      <input type="email" class="form-control" id="email" placeholder="your@email.com" required>
-                      <small id="email-error" class="text-danger d-none"></small>
-                    </div>
-
-                    <div class="mb-3">
-                      <label for="creditCard" class="form-label">Credit Card (16 digits)</label>
-                      <input type="text" class="form-control" id="creditCard" placeholder="1234 5678 9012 3456" maxlength="19" required>
-                      <small id="creditCard-error" class="text-danger d-none"></small>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary w-100 py-2">Place Order</button>
-                  </form>
-
-                  <div id="success-message" class="alert alert-success mt-3 d-none" role="alert">
-                    Order placed successfully! Redirecting...
-                  </div>
-
-                  <div id="error-message" class="alert alert-danger mt-3 d-none" role="alert"></div>
+  <main class="login-page bg-light">
+    <section class="login-section py-8">
+      <div class="container">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-lg-6 col-md-8">
+            <div class="card login-card shadow-lg rounded-4 border-0">
+              <div class="card-body p-5">
+                <div class="text-center mb-4">
+                  <h1 class="h3 mb-2">Checkout</h1>
+                  <p class="text-muted mb-0">Complete your purchase</p>
                 </div>
+
+                <!-- Cart Summary -->
+                <div class="mb-4 p-3 bg-light border rounded">
+                  <h5 class="mb-3">Order Summary</h5>
+                  <div id="cart-summary">
+                    <p class="text-muted">Loading cart...</p>
+                  </div>
+                  <div class="border-top mt-3 pt-3">
+                    <div class="d-flex justify-content-between fw-bold">
+                      <span>Total:</span>
+                      <span id="order-total">$0.00</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Checkout Form -->
+                <form id="checkout-form">
+                  <!-- Shipping Information -->
+                  <h5 class="mb-3">Shipping Information</h5>
+                  <div class="mb-3">
+                    <label for="customerName" class="form-label">Full Name</label>
+                    <input type="text" class="form-control" id="customerName" placeholder="John Doe" required>
+                    <small id="customerName-error" class="text-danger d-none"></small>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="customerAddress" class="form-label">Shipping Address</label>
+                    <textarea class="form-control" id="customerAddress" rows="3"
+                      placeholder="123 Main St, City, State, ZIP Code" required></textarea>
+                    <small id="customerAddress-error" class="text-danger d-none"></small>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="customerPhone" class="form-label">Phone Number</label>
+                    <input type="tel" class="form-control" id="customerPhone" placeholder="+1 (555) 123-4567"
+                      maxlength="10" required>
+                    <small id="customerPhone-error" class="text-danger d-none"></small>
+                  </div>
+
+                  <hr class="my-4">
+
+                  <!-- Payment Information -->
+                  <h5 class="mb-3">Payment Information</h5>
+                  <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="your@email.com" required>
+                    <small id="email-error" class="text-danger d-none"></small>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="creditCard" class="form-label">Credit Card (16 digits)</label>
+                    <div class="position-relative">
+                      <input type="text" class="form-control pe-5" id="creditCard" placeholder="1234 5678 9012 3456"
+                        maxlength="19" required>
+                      <i id="card-icon"
+                        class="fa-regular fa-credit-card position-absolute top-50 end-0 translate-middle-y me-3 fs-5 text-muted transition-all"></i>
+                    </div>
+                    <small id="creditCard-error" class="text-danger d-none"></small>
+                  </div>
+
+                  <button type="submit" class="btn btn-primary w-100 py-2">Place Order</button>
+                </form>
+
+                <div id="success-message" class="alert alert-success mt-3 d-none" role="alert">
+                  Order placed successfully! Redirecting...
+                </div>
+
+                <div id="error-message" class="alert alert-danger mt-3 d-none" role="alert"></div>
               </div>
             </div>
           </div>
         </div>
-      </section>
-    </main>
-
-    <!-- Offcanvas Menu -->
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-      <div class="offcanvas-header px-4">
-        <a class="navbar-brand" href="#">
-          <span class="d-flex flex-column text-uppercase text-xs fw-bold lh-sm">
-            <span class="" style="letter-spacing: .12rem;">Furnish</span>
-            <span>Template</span>
-          </span>
-        </a>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
-      <div class="offcanvas-body">
-        <div class="navbar-custom">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" href="index.html">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="about.html">About us</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="products.html">Products</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="testimonials.html">Testimonials</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="checkout.html">Checkout</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="contact.html">Contact</a>
-            </li>
-            <li class="nav-item login-btn">
-              <a class="nav-link" href="login.html">Login</a>
-            </li>
-            <li class="nav-item login-btn">
-              <a class="nav-link" href="register.html">Register</a>
-            </li>
-            <li class="nav-item logout-btn" style="display: none;">
-              <a class="nav-link" href="#" onclick="authManager.logout()">Logout</a>
-            </li>
-          </ul>
-        </div>
+    </section>
+  </main>
+
+  <!-- Offcanvas Menu -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header px-4">
+      <a class="navbar-brand" href="#">
+        <span class="d-flex flex-column text-uppercase text-xs fw-bold lh-sm">
+          <span class="" style="letter-spacing: .12rem;">Furnish</span>
+          <span>Template</span>
+        </span>
+      </a>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <div class="navbar-custom">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="products.html">Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="testimonials.html">Testimonials</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="checkout.html">Checkout</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+          <li class="nav-item login-btn">
+            <a class="nav-link" href="login.html">Login</a>
+          </li>
+          <li class="nav-item login-btn">
+            <a class="nav-link" href="register.html">Register</a>
+          </li>
+          <li class="nav-item logout-btn" style="display: none;">
+            <a class="nav-link" href="#" onclick="authManager.logout()">Logout</a>
+          </li>
+        </ul>
       </div>
     </div>
+  </div>
 
-    <!-- Cart Offcanvas -->
-    <div class="cartcanvas cartcanvas-end" tabindex="-1" id="cartcanvasExample" aria-labelledby="cartcanvasExampleLabel">
-      <div class="cartcanvas-header px-4">
-        <a class="navbar-brand" href="#">
-          <span class="d-flex flex-column text-uppercase text-xs fw-bold lh-sm">
-            <span class="" style="letter-spacing: .12rem;">Furnish</span>
-            <span>Template</span>
-          </span>
-        </a>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  <!-- Cart Offcanvas -->
+  <div class="cartcanvas cartcanvas-end offcanvas offcanvas-end" tabindex="-1" id="cartcanvasExample"
+    aria-labelledby="cartcanvasExampleLabel">
+    <div class="cartcanvas-header px-4 d-flex align-items-center justify-content-between">
+      <a class="navbar-brand" href="#">
+        <span class="d-flex flex-column text-uppercase text-xs fw-bold lh-sm">
+          <span class="" style="letter-spacing: .12rem;">Furnish</span>
+          <span>Template</span>
+        </span>
+      </a>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="cartcanvas-body p-4">
+      <!-- Cart Items will be rendered here by JS -->
+      <div id="cart-items-list">
+        <p class="text-center text-muted">Your cart is empty.</p>
       </div>
-      <div class="cartcanvas-body">
-        <h5 class="mb-3">Shopping Cart</h5>
-        <div id="cart-items">
-          <p class="text-muted">Your cart is empty</p>
+      <div class="mt-4 d-flex flex-column gap-2">
+        <div class="d-flex justify-content-between fw-bold">
+          <span>Total:</span>
+          <span id="cart-total">$0.00</span>
         </div>
-        <div class="border-top mt-3 pt-3">
-          <div class="d-flex justify-content-between fw-bold">
-            <span>Total:</span>
-            <span id="cart-total">$0.00</span>
-          </div>
-          <a href="checkout.html" class="btn btn-primary w-100 mt-3">Checkout</a>
-        </div>
+        <button class="btn btn-primary w-100 mt-2" id="checkout-btn" disabled
+          onclick="window.location.href='checkout.html'">Checkout</button>
       </div>
     </div>
+  </div>
 
-    <footer class="bg-dark text-white py-5">
-      <div class="container text-center">
-        <p class="mb-1">Furnish Template</p>
-        <small class="text-muted">Secure checkout</small>
-      </div>
-    </footer>
+  <footer class="bg-dark text-white py-5">
+    <div class="container text-center">
+      <p class="mb-1">Furnish Template</p>
+      <small class="text-muted">Secure checkout</small>
+    </div>
+  </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="./assets/js/auth.js"></script>
-    <script src="./assets/js/cart.js"></script>
-    <script src="./assets/js/checkout.js"></script>
-  </body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="./assets/js/auth.js"></script>
+  <script src="./assets/js/cart.js"></script>
+  <script src="./assets/js/checkout.js"></script>
+</body>
+
 </html>

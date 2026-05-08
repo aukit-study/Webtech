@@ -41,9 +41,9 @@ function renderProducts(products) {
     container.innerHTML = products.map(product => `
         <div class="col-sm-6 col-md-4">
             <div class="card h-100" data-product-id="${product.id}">
-                <img src="${product.urlimage}" class="card-img-top" style="height:250px; object-fit:cover;">
+                <img src="${product.urlimage || product.image}" class="card-img-top" style="height:250px; object-fit:cover;">
                 <div class="card-body">
-                    <p class="text-muted small">${product.category}</p>
+                    <p class="text-muted small">${product.category || 'Product'}</p>
                     <h5 class="card-title">${product.name}</h5>
                     <p class="fw-bold text-primary">$${product.price}</p>
                     <button class="btn btn-primary btn-sm btn-add-to-cart">Add to Cart</button>

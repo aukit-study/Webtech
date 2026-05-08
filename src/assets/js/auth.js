@@ -1,4 +1,38 @@
 // Authentication utilities
+// Global utility for Toast Notifications
+window.showNotification = function(message, type = 'success') {
+    // Create a beautiful custom toast notification
+    const notification = document.createElement('div');
+    notification.className = `custom-toast ${type}`;
+
+    const icon = type === 'success' ? 'bi-check-circle-fill' : 'bi-info-circle-fill';
+
+    notification.innerHTML = `
+        <i class="bi ${icon} custom-toast-icon ${type}"></i>
+        <span style="flex-grow: 1;">${message}</span>
+        <button type="button" class="custom-toast-close" onclick="this.parentElement.classList.remove('show'); setTimeout(()=>this.parentElement.remove(), 400);">
+            <i class="bi bi-x-lg"></i>
+        </button>
+    `;
+
+    document.body.appendChild(notification);
+
+    // Trigger animation
+    requestAnimationFrame(() => {
+        notification.classList.add('show');
+    });
+
+    // Remove after 3.5 seconds
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.classList.remove('show');
+            setTimeout(() => {
+                if (notification.parentNode) notification.remove();
+            }, 400); // Wait for transition
+        }
+    }, 3500);
+};
+
 class AuthManager {
     constructor() {
         this.token = localStorage.getItem('userToken');
@@ -68,19 +102,26 @@ class AuthManager {
 
     // Update UI based on auth status
     updateUI() {
-        const loginButtons = document.querySelectorAll('.login-btn');
-        const logoutButtons = document.querySelectorAll('.logout-btn');
+        const authButtons = document.querySelectorAll('.auth-btn');
         const userMenus = document.querySelectorAll('.user-menu');
 
         if (this.isLoggedIn()) {
-            // Show logout buttons, hide login buttons
-            loginButtons.forEach(btn => btn.style.display = 'none');
-            logoutButtons.forEach(btn => btn.style.display = 'block');
+            authButtons.forEach(btn => {
+                btn.textContent = 'Logout';
+                if (btn.tagName === 'BUTTON') {
+                    btn.classList.remove('btn-outline-primary');
+                    btn.classList.add('btn-primary');
+                }
+            });
             userMenus.forEach(menu => menu.style.display = 'block');
         } else {
-            // Show login buttons, hide logout buttons
-            loginButtons.forEach(btn => btn.style.display = 'block');
-            logoutButtons.forEach(btn => btn.style.display = 'none');
+            authButtons.forEach(btn => {
+                btn.textContent = 'Login';
+                if (btn.tagName === 'BUTTON') {
+                    btn.classList.add('btn-outline-primary');
+                    btn.classList.remove('btn-primary');
+                }
+            });
             userMenus.forEach(menu => menu.style.display = 'none');
         }
     }
@@ -96,19 +137,16 @@ const authManager = new AuthManager();
 
 // Add event listeners for login/logout buttons
 document.addEventListener('DOMContentLoaded', () => {
-    // Login buttons
-    const loginButtons = document.querySelectorAll('.login-btn');
-    loginButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            window.location.href = 'login.html';
-        });
-    });
-
-    // Logout buttons
-    const logoutButtons = document.querySelectorAll('.logout-btn');
-    logoutButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            authManager.logout();
+    // Auth buttons (Login/Logout)
+    const authButtons = document.querySelectorAll('.auth-btn');
+    authButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (authManager.isLoggedIn()) {
+                authManager.logout();
+            } else {
+                window.location.href = 'login.html';
+            }
         });
     });
 });
