@@ -1,0 +1,9 @@
+The Manual Checklist :
+Write down 5 things that could go "wrong" when a real user
+starts using their app.
+
+1. Database
+2. gitignore
+3. Package.json
+4. .env
+5. API key

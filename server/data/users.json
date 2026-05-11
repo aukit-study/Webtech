@@ -8,7 +8,7 @@
   },
   {
     "id": "2",
-    "email": "mike.furnish@demo.net",
+    "email": "mike.Furniture@demo.net",
     "passwordHash": "$2b$10$kPEBuB0UyQZglVAFIXsOUu5P.Ux290EQhIrPWfiIK2SlBThtYHZ8O",
     "firstName": "Michael",
     "registrationDate": "2026-02-05"
